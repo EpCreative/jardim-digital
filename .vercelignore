@@ -1,0 +1,8 @@
+.git
+.vercel
+*.md
+serve.py
+__pycache__
+*.pyc
+.env*
+*.zip

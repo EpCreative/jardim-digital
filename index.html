@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#eeede3" />
+  <meta name="description" content="Um jardim para caminhar sem pressa. Explore um refúgio em 3D, entre flores, água e a luz do fim de tarde." />
+  <title>Jardim — um respiro digital</title>
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preload" href="./assets/instrument-serif.ttf" as="font" type="font/ttf" crossorigin />
+  <link rel="stylesheet" href="./src/style.css?v=7" />
+</head>
+<body>
+  <svg class="svg-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+    <symbol id="leaf" viewBox="0 0 40 44"><path d="M20 41V17M20 28C8 28 5 20 6 13c10 0 14 6 14 15ZM20 21C31 21 35 12 33 5c-10 0-13 7-13 16ZM20 35C29 36 33 31 34 25c-8-2-13 2-14 10Z"/></symbol>
+    <symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></symbol>
+    <symbol id="sound" viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4V5Zm4 3a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></symbol>
+    <symbol id="mute" viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4V5Zm5 4 5 6m0-6-5 6"/></symbol>
+    <symbol id="map" viewBox="0 0 24 24"><path d="m3 5 6-2 6 2 6-2v16l-6 2-6-2-6 2V5Zm6-2v16m6-14v16"/></symbol>
+    <symbol id="close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+    <symbol id="mouse" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="6"/><path d="M12 6v4"/></symbol>
+    <symbol id="moon" viewBox="0 0 24 24"><path d="M20.6 14A9 9 0 0 1 10 3.4 9 9 0 1 0 20.6 14Z"/></symbol>
+    <symbol id="pin" viewBox="0 0 24 24"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2"/></symbol>
+    <symbol id="person" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.5"/><path d="M7 13v-2a5 5 0 0 1 10 0v2M9 11v10m6-10v10M9 15h6"/></symbol>
+    <symbol id="portrait" viewBox="0 0 24 24"><path d="M7 3H3v4m14-4h4v4M3 17v4h4m10 0h4v-4"/><circle cx="12" cy="9" r="3"/><path d="M7 18a5 5 0 0 1 10 0"/></symbol>
+  </defs></svg>
+
+  <main id="garden-app" data-mode="overview" data-view="third">
+    <div id="scene" aria-label="Jardim tridimensional interativo"></div>
+    <div class="scene-wash" aria-hidden="true"></div>
+    <div class="vignette" aria-hidden="true"></div>
+
+    <header class="header">
+      <button id="home" class="brand" aria-label="Jardim — voltar à vista inicial">
+        <svg class="brand-leaf"><use href="#leaf"/></svg>
+        <span><span class="brand-name">Jardim</span><span class="brand-caption">UM RESPIRO DIGITAL</span></span>
+      </button>
+      <div class="header-actions">
+        <button id="time-toggle" class="time-button" aria-label="Mudar para entardecer" aria-pressed="false"><svg><use href="#sun"/></svg><span id="time-label">Fim de tarde</span></button>
+        <span class="header-divider"></span>
+        <button id="sound-toggle" class="icon-button" aria-label="Ativar som ambiente" aria-pressed="false"><svg><use href="#mute"/></svg></button>
+        <button id="help-toggle" class="icon-button help-button" aria-label="Como explorar o jardim">?</button>
+      </div>
+    </header>
+
+    <div id="avatar-controls" class="avatar-controls" aria-label="Câmera do personagem" hidden>
+      <button id="view-toggle" aria-label="Alternar para primeira pessoa" aria-pressed="true"><svg><use href="#person"/></svg><span id="view-label">3ª pessoa</span><kbd>V</kbd></button>
+      <span class="avatar-control-divider"></span>
+      <button id="front-view" aria-label="Ver meu personagem de frente"><svg><use href="#portrait"/></svg><span>Ver de frente</span></button>
+    </div>
+
+    <section class="intro" id="intro" aria-labelledby="intro-title">
+      <p class="eyebrow"><span></span> DEIXE O TEMPO LÁ FORA</p>
+      <h1 id="intro-title">Encontre<br>seu <em>respiro.</em></h1>
+      <p class="intro-description">Um jardim para caminhar sem pressa.<br>Entre, explore e fique um pouco.</p>
+      <button id="enter" class="primary-button" disabled><span>Preparando o jardim</span><svg><use href="#arrow"/></svg></button>
+      <p class="intro-note"><span class="tiny-dot"></span> Seu personagem. Seu ritmo. Seu jardim.</p>
+    </section>
+
+    <div class="place-marker" id="place-marker" aria-hidden="true"><span class="marker-dot"></span><span>A FONTE</span><span class="marker-line"></span></div>
+    <div id="reticle" aria-hidden="true"></div>
+    <button id="interact" class="interaction" hidden><kbd>E</kbd><span>Observar a fonte</span><svg><use href="#arrow"/></svg></button>
+
+    <aside class="mini-map-wrap" aria-label="Orientação no jardim">
+      <button id="map-toggle" class="mini-map" aria-label="Abrir mapa e visitar lugares">
+        <span class="map-north">N<span>↑</span></span>
+        <svg viewBox="0 0 150 110" class="map-art" aria-hidden="true">
+          <path class="map-tree" d="M25 32c-9-12 11-23 16-12 12-9 23 9 10 16 1 17-22 12-26-4ZM95 15c-10-8-23 7-13 16-3 12 20 17 26 5 13-3 3-22-13-21ZM115 71c-11-6-22 8-12 16 7 12 30 0 20-10Z"/>
+          <path class="map-path" d="M75 108c0-21-22-28-21-44 1-16 37-15 36-32M55 66c-16-3-25-12-29-19M69 52c20 1 31 5 41-9"/>
+          <ellipse class="map-pond" cx="40" cy="33" rx="12" ry="8"/>
+          <circle class="map-fountain" cx="74" cy="54" r="8"/>
+          <path class="map-pergola" d="M106 37h18v16h-18zM106 41h18m-18 4h18m-18 4h18"/>
+          <g id="map-player" transform="translate(75 97)"><circle r="5"/><path d="m-3-8 3-5 3 5"/></g>
+        </svg>
+        <span class="map-caption"><svg><use href="#map"/></svg> Explore o jardim <span>↗</span></span>
+      </button>
+    </aside>
+
+    <footer class="footer">
+      <div class="footer-label"><span class="footer-number">01</span><span class="footer-rule"></span><span id="location-label">UM PEQUENO REFÚGIO</span></div>
+      <p id="overview-hint" class="controls-hint"><svg><use href="#mouse"/></svg> Arraste para olhar ao redor</p>
+      <div id="walk-hint" class="walk-hint" hidden><span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> Caminhar</span><span><svg><use href="#mouse"/></svg> Arraste para olhar</span><span><kbd>Esc</kbd> Pausar</span></div>
+    </footer>
+
+    <div class="touch-controls" id="touch-controls" hidden aria-label="Controles de movimento">
+      <button data-move="forward" aria-label="Caminhar para frente">↑</button><button data-move="left" aria-label="Caminhar para a esquerda">←</button><button data-move="back" aria-label="Caminhar para trás">↓</button><button data-move="right" aria-label="Caminhar para a direita">→</button>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <div id="load-error" class="load-error" role="alert" hidden><h2>O jardim ainda não abriu.</h2><p>Esta experiência precisa de WebGL. Tente recarregar ou abrir em um navegador com aceleração gráfica.</p><button onclick="location.reload()" class="primary-button">Tentar novamente</button></div>
+  </main>
+
+  <dialog id="help-dialog" class="panel-dialog">
+    <form method="dialog"><button class="dialog-close icon-button" aria-label="Fechar ajuda"><svg><use href="#close"/></svg></button></form>
+    <p class="eyebrow">BEM-VINDO AO JARDIM</p><h2>Vá no seu ritmo.</h2><p>Caminhe com seu personagem em terceira pessoa. Arraste para girar a câmera e ver o jardim de qualquer ângulo.</p>
+    <div class="help-rows"><div><span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></span><span>Caminhar pelo jardim</span></div><div><svg><use href="#mouse"/></svg><span>Girar a câmera ao redor de você</span></div><div><kbd>V</kbd><span>Alternar 1ª e 3ª pessoa</span></div><div><kbd>Shift</kbd><span>Caminhar mais rápido</span></div><div><kbd>E</kbd><span>Interagir com um lugar próximo</span></div><div><kbd>Esc</kbd><span>Pausar o passeio</span></div></div>
+    <p class="dialog-note">No celular, deslize a tela para olhar e use as setas para caminhar. Pelo mapa, visite os quatro cantinhos. Aproxime-se de um lugar e pressione E para interagir.</p>
+    <button id="help-done" class="primary-button">Entendi, vamos passear <svg><use href="#arrow"/></svg></button>
+  </dialog>
+
+  <dialog id="places-dialog" class="panel-dialog places-dialog">
+    <form method="dialog"><button class="dialog-close icon-button" aria-label="Fechar mapa"><svg><use href="#close"/></svg></button></form>
+    <p class="eyebrow">QUATRO CANTINHOS</p><h2>Escolha seu passeio.</h2><p>Descubra um novo lugar para fazer uma pausa.</p><div id="places-list" class="places-list"></div>
+  </dialog>
+
+  <dialog id="detail-dialog" class="panel-dialog detail-dialog">
+    <form method="dialog"><button class="dialog-close icon-button" aria-label="Fechar lugar"><svg><use href="#close"/></svg></button></form>
+    <p class="eyebrow" id="detail-eyebrow"></p><h2 id="detail-title"></h2><p id="detail-copy"></p><p class="botanical-note" id="detail-note"></p><button id="detail-action" class="primary-button"></button>
+  </dialog>
+  <noscript><div class="load-error"><h2>Um jardim feito de luz e código.</h2><p>Ative o JavaScript para explorar o ambiente em 3D.</p></div></noscript>
+  <script type="module" src="./src/main.js?v=11"></script>
+</body>
+</html>

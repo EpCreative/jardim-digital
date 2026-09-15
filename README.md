@@ -1,5 +1,7 @@
 # Jardim — um respiro digital
 
+**[Entrar no jardim](https://jardim-digital-psi.vercel.app)** · [Repositório no GitHub](https://github.com/EpCreative/jardim-digital)
+
 Um jardim original em 3D, explorável no navegador com um personagem personalizado em terceira pessoa. Caminhos curvos ligam uma fonte animada, canteiros floridos, um lago e um pergolado com banco. Inclui mapa com viagens diretas, interações, luz de entardecer, áudio ambiente sintetizado e controles por toque.
 
 ## Abrir localmente
@@ -14,7 +16,9 @@ Abra [o jardim local](http://127.0.0.1:4341) no navegador. Não abra `index.html
 
 ## Publicar na Vercel
 
-Importe este repositório na Vercel com a raiz `./`. O arquivo `vercel.json` configura o projeto como site estático: preset **Other**, sem instalação de dependências ou comando de build, e saída na raiz. Todos os módulos, fontes, texturas e licenças necessários estão incluídos no repositório.
+O site está publicado na Vercel e conectado a este repositório no GitHub. Novos pushes na branch `main` geram automaticamente uma publicação em produção pela integração Git da Vercel.
+
+O arquivo `vercel.json` configura o projeto como site estático na raiz `./`: preset **Other**, sem instalação de dependências ou comando de build, e saída na raiz. Todos os módulos, fontes, texturas e licenças necessários estão incluídos no repositório.
 
 ## Controles
 

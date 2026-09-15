@@ -50,3 +50,15 @@ Usadas as duas fotos de perfil/moletom fornecidas pelo usuário. Ajustados proje
 - Descarte auditado: cena vazia, geometria original das orelhas restaurada e todos os recursos monitorados liberados. Os hashes dos três arquivos finais permaneceram iguais antes e depois dos testes.
 
 O modelo continua sendo uma aproximação baseada em imagens. Não foi realizada digitalização 3D, medição corporal ou avaliação quantitativa de identidade/semelhança.
+
+## Publicação pública — 15 de setembro de 2026
+
+- Removidos o personagem de companhia, seus módulos, textura, controles e referências. O avatar personalizado e as atividades do jardim permanecem disponíveis.
+- Auditoria dos 29 arquivos rastreados no Git concluída. As referências locais necessárias ao funcionamento resolvem para arquivos incluídos no repositório.
+- As duas texturas do avatar foram convertidas para WebP, com qualidade 90, sem recorte ou redimensionamento. Ambas mantêm 1254 × 1254 px e tiveram a decodificação verificada: referência frontal com 183.376 bytes e lateral com 240.040 bytes.
+- No servidor local, o mapa com quatro destinos e a interação da fonte foram conferidos no navegador. Console sem erros ou avisos após o fluxo.
+- Os 21 arquivos de execução responderam com HTTP 200 na publicação, sem autenticação, e seus hashes SHA-256 corresponderam aos arquivos locais. O arquivo de configuração `vercel.json` é o 22º arquivo do pacote de publicação e não integra essa verificação HTTP. O endereço público [jardim-digital-psi.vercel.app](https://jardim-digital-psi.vercel.app) respondeu sem redirecionar para login.
+- No navegador online, foram conferidos a entrada em terceira pessoa, o mapa com quatro destinos, a viagem até o canteiro e a ação de regar as flores. O cenário e o avatar renderizaram corretamente; não houve erros ou avisos originados do site durante esse fluxo.
+- O [repositório público](https://github.com/EpCreative/jardim-digital) está conectado ao projeto da Vercel, com a branch `main` como origem das publicações automáticas. A conexão foi verificada pela API.
+
+Esta etapa inclui acesso HTTP público, inspeção visual e interação nos navegadores local e online. Não inclui aparelhos físicos, leitor de tela ou benchmark de desempenho.

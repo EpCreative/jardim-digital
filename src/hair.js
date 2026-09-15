@@ -35,7 +35,7 @@ export function createAvatarHair(head) {
   }
   add(surface(positions,uvs,indices),baseMaterial);
 
-  // Outline follows only hair pixels in avatar-face.png. All portrait coordinates
+  // Outline follows only hair pixels in avatar-face.webp. All portrait coordinates
   // share the face's constant scale, so the hairline and facial features agree.
   const outline=[
     [.18,.235,.374],[.21,.153,.425],[.245,.107,.456],[.30,.055,.395],

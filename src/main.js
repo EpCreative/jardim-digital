@@ -140,9 +140,9 @@ async function init() {
     navigation=createNavigation(render.camera,render.renderer.domElement,garden.colliders,()=>{if(app.dataset.mode==='rest')changeMode('walk');});
     avatar=createAvatar(render.scene);
     avatar.root.visible=false;
-    try { await avatar.setFaceTexture('./assets/avatar-face.png'); }
+    try { await avatar.setFaceTexture('./assets/avatar-face.webp'); }
     catch(error) { console.warn('A textura facial não carregou; usando o rosto modelado.',error); }
-    try { await avatar.setProfileTexture('./assets/avatar-profile.png'); }
+    try { await avatar.setProfileTexture('./assets/avatar-profile.webp'); }
     catch(error) { console.warn('A referência lateral não carregou; usando o perfil modelado.',error); }
     bindUI();
     await render.renderer.compileAsync(render.scene,render.camera);
